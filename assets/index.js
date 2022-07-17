@@ -34,15 +34,53 @@ inquirer
     message: 'Test instructions: ',
     name: 'tests',
   },
+  {
+    type: 'list',
+    message: 'Pick a license:',
+    choices: ['MIT', 'Apache license 2.0', 'GPLv2'],
+    name: 'license',
+  },
+  {
+    type: 'input',
+    message: 'Questions:',
+    name: 'questions',
+  }
 
 ])
 .then((response) => {
  console.log(response);
-var userName = response.name;
-var location = response.location;
-var bioGraphy = response.biography;
-var Linked = response.linkedin;
-var github = response.github;
+var title = response.p_title;
+var description = response.description;
+var installation = response.installation;
+var usage = response.usage;
+var contribution = response.contribution;
+var tests = response.tests;
+var license = response.license;
+var questions = response.questions;
+var licensePrint
+var readme = `
+# ${title}
+
+## Description
+${description}
+
+## Installation
+${installation}
+
+## Usage
+${usage}
+
+## Contributions
+${contribution}
+
+## Tests
+${tests}
+
+## License
+${licensePrint}
+
+## Questions
+${questions}`
 
 generateMarkdown(readme)
 });
