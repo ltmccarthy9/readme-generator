@@ -6,29 +6,35 @@ inquirer
 .prompt([
   {
     type: 'input',
-    message: 'What is your name?',
-    name: 'name',
+    message: 'What is your project title?',
+    name: 'p_title',
   },
   {
     type: 'input',
-    message: 'Where are you located?',
-    name: 'location',
+    message: 'Describe your project: ',
+    name: 'description',
   },
   {
     type: 'input',
-    message: 'bio: ',
-    name: 'biography',
+    message: 'Installation instructions: ',
+    name: 'installation',
   },
   {
     type: 'input',
-    message: 'What is your LinkedIn URL?',
-    name: 'linkedin',
+    message: 'Usage information:',
+    name: 'usage',
   },
   {
     type: 'input',
-    message: 'What is your Github URL?',
-    name: 'github',
-  }
+    message: 'Contributions: ',
+    name: 'contribution',
+  },
+  {
+    type: 'input',
+    message: 'Test instructions: ',
+    name: 'tests',
+  },
+
 ])
 .then((response) => {
  console.log(response);
@@ -38,11 +44,11 @@ var bioGraphy = response.biography;
 var Linked = response.linkedin;
 var github = response.github;
 
-writeHTML(HTMLPORTFOLIO)
+generateMarkdown(readme)
 });
 
-function writeHTML(portfolio){
-    fs.writeFile('index.html', portfolio, (err) =>
+function generateMarkdown(readme){
+    fs.writeFile('generatedREADME.md', readme, (err) =>
   err ? console.error(err) : console.log('Success!')
 );
 
