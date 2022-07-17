@@ -42,8 +42,13 @@ inquirer
   },
   {
     type: 'input',
-    message: 'Questions:',
-    name: 'questions',
+    message: 'What is your github username? :',
+    name: 'github',
+  },
+  {
+    type: 'input',
+    message: 'What is your email?',
+    name: 'email',
   }
 
 ])
@@ -56,10 +61,19 @@ var usage = response.usage;
 var contribution = response.contribution;
 var tests = response.tests;
 var license = response.license;
-var questions = response.questions;
-var licensePrint
+var licenseBadge;
+if (license === 'MIT'){
+    licenseBadge = "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
+}else if (license === 'Apache'){
+    licenseBadge = "[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)";
+}else {
+    licenseBadge = "[![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)";
+}
+var github = response.github;
+var email = response.email;
 var readme = `
 # ${title}
+${licenseBadge}
 
 ## Description
 ${description}
@@ -80,7 +94,9 @@ ${tests}
 ${licensePrint}
 
 ## Questions
-${questions}`
+You can reach me through my github or email.
+https://github.com/${github}
+${email}`
 
 generateMarkdown(readme)
 });
