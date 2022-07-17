@@ -37,7 +37,7 @@ inquirer
   {
     type: 'list',
     message: 'Pick a license:',
-    choices: ['MIT', 'Apache license 2.0', 'GPLv2'],
+    choices: ['MIT', 'Apache license 2.0', 'GPLv3'],
     name: 'license',
   },
   {
@@ -62,18 +62,31 @@ var contribution = response.contribution;
 var tests = response.tests;
 var license = response.license;
 var licenseBadge;
+var licenseDesc;
 if (license === 'MIT'){
     licenseBadge = "[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)";
+    licenseDesc = "This project is covered under the MIT License";
 }else if (license === 'Apache'){
     licenseBadge = "[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)";
+    licenseDesc = "This project is covered under the Apache 2.0 License"
 }else {
     licenseBadge = "[![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)";
+    licenseDesc = "This project is covered under the GNU GENERAL PUBLIC LICENSE v.30"
 }
 var github = response.github;
 var email = response.email;
 var readme = `
 # ${title}
 ${licenseBadge}
+
+## Table of contents
+1. [Description](#Description)
+2. [Installation](#Installation)
+3. [Usage](#Usage)
+4. [Contributions](#Contributions)
+5. [Tests](#Tests)
+6. [License](#License)
+7. [Questions](#Questions)
 
 ## Description
 ${description}
@@ -91,7 +104,7 @@ ${contribution}
 ${tests}
 
 ## License
-${licensePrint}
+${licenseDesc}
 
 ## Questions
 You can reach me through my github or email.
