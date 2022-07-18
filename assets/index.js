@@ -1,7 +1,8 @@
 const fs = require("fs");
 const inquirer = require('inquirer');
-//const { bindNodeCallback } = require("rxjs");
 
+
+// Inquirer prompt for all user input
 inquirer
 .prompt([
   {
@@ -52,7 +53,7 @@ inquirer
   }
 
 ])
-.then((response) => {
+.then((response) => {       //creating variables from user input
  console.log(response);
 var title = response.p_title;
 var description = response.description;
@@ -75,6 +76,8 @@ if (license === 'MIT'){
 }
 var github = response.github;
 var email = response.email;
+
+// readme variable for entire readme template
 var readme = `
 # ${title}
 ${licenseBadge}
@@ -111,9 +114,11 @@ You can reach me through my github or email.
 https://github.com/${github}
 ${email}`
 
+//call generate markdown function (writefile)
 generateMarkdown(readme)
 });
 
+//takes the readme and writes it to a new file called generatedREADME.md
 function generateMarkdown(readme){
     fs.writeFile('generatedREADME.md', readme, (err) =>
   err ? console.error(err) : console.log('Success!')
