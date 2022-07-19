@@ -3,6 +3,7 @@ const inquirer = require('inquirer');
 
 
 // Inquirer prompt for all user input
+function init() {
 inquirer
 .prompt([
   {
@@ -125,3 +126,6 @@ function generateMarkdown(readme){
 );
 
 }
+}
+
+init();
