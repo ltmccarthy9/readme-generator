@@ -25,6 +25,45 @@ https://drive.google.com/file/d/1Q-Ys2AbDnkuIJ2gBx2iT37Yc-ekg-AqS/view < - - - -
 ## Usage
 This application is used to generate a README.md from the command line so that you don't have to spend time on formatting titles, links, or license badges.
 
+## Code
+```javascript
+inquirer
+.prompt([
+  {
+    type: 'input',
+    message: 'What is your project title?',
+    name: 'p_title',
+  },
+```
+This is an example of a single inquirer question using prompt.  This is how user input is gathered.
+
+```javascript
+var readme = `
+# ${title}
+${licenseBadge}
+
+## Table of contents
+1. [Description](#Description)
+2. [Installation](#Installation)
+3. [Usage](#Usage)
+4. [Contributions](#Contributions)
+5. [Tests](#Tests)
+6. [License](#License)
+7. [Questions](#Questions)
+
+## Description
+${description}
+```
+Here we use template literals to insert user input into the README.md.
+
+```javascript
+function generateMarkdown(readme){
+    fs.writeFile('generatedREADME.md', readme, (err) =>
+  err ? console.error(err) : console.log('Success!')
+);
+```
+Here we take the completed readme and send it to generateMarkdown function that uses writeFile to generate the README.md.
+
 ## Contact
 https://github.com/ltmccarthy9   < - - - Github
 ltmccarthy9@gmail.com     < - - - Email
